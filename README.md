@@ -22,12 +22,6 @@ $ npm run start:dev
 
 ` http:/{yourHost}:{yourPort}/api`
 
-## Stay in touch
+## Develepment
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Developed with NestJs as rest Api source and Mongo(mongoose) as db source

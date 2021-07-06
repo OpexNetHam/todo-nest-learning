@@ -2,6 +2,8 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { TaskDto } from '../models/task.dto';
+import { UpdateTaskDto } from '../models/update-task.dto';
+
 import { Task, TaskDocument } from '../models/task.schema';
 
 @Injectable()
@@ -32,9 +34,9 @@ export class TaskService {
     }).save();
   }
 
-  async update(title: string, TaskDto: TaskDto): Promise<Task> {
+  async update(title: string, UpdateTaskDto: UpdateTaskDto): Promise<Task> {
     return await this.model
-      .findOneAndUpdate({ title }, TaskDto, {
+      .findOneAndUpdate({ title }, UpdateTaskDto, {
         new: true,
         useFindAndModify: false,
       })

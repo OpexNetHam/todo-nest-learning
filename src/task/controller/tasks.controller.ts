@@ -11,6 +11,7 @@ import {
   HttpCode,
 } from '@nestjs/common';
 import { TaskDto } from '../models/task.dto';
+import { UpdateTaskDto } from '../models/update-task.dto';
 import { TaskService } from '../service/tasks.service';
 import {
   ApiCreatedResponse,
@@ -51,10 +52,13 @@ export class TaskController {
   @Put(':title')
   @ApiOkResponse({ description: 'Task updated' })
   @ApiBadRequestResponse({ description: 'Failed to update task' })
-  @ApiBody({ type: TaskDto })
+  @ApiBody({ type: UpdateTaskDto })
   @UsePipes(ValidationPipe)
-  async update(@Param('title') title: string, @Body() TaskDto: TaskDto) {
-    return await this.service.update(title, TaskDto);
+  async update(
+    @Param('title') title: string,
+    @Body() UpdateTaskDto: UpdateTaskDto,
+  ) {
+    return await this.service.update(title, UpdateTaskDto);
   }
 
   @Delete(':title')

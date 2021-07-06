@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { TaskStatus } from '../TaskStatus';
+import { TaskStatus } from './TaskStatus';
 
 export type TaskDocument = Task & Document;
 
