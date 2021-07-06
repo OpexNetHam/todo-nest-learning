@@ -42,22 +42,19 @@ export class TaskController {
     description: 'Task created. Returns created task object',
   })
   @ApiBadRequestResponse({ description: 'Failed to create task' })
-  @ApiBody({ type: CreateTaskDto })
+  @ApiBody({ type: TaskDto })
   @UsePipes(ValidationPipe)
-  async create(@Body() createTaskDto: CreateTaskDto) {
-    return await this.service.create(createTaskDto);
+  async create(@Body() TaskDto: TaskDto) {
+    return await this.service.create(TaskDto);
   }
 
   @Put(':title')
   @ApiOkResponse({ description: 'Task updated' })
   @ApiBadRequestResponse({ description: 'Failed to update task' })
-  @ApiBody({ type: UpdateTaskDto })
+  @ApiBody({ type: TaskDto })
   @UsePipes(ValidationPipe)
-  async update(
-    @Param('title') title: string,
-    @Body() UpdateTaskDto: UpdateTaskDto,
-  ) {
-    return await this.service.update(title, UpdateTaskDto);
+  async update(@Param('title') title: string, @Body() TaskDto: TaskDto) {
+    return await this.service.update(title, TaskDto);
   }
 
   @Delete(':title')
