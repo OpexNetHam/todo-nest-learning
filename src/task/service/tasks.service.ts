@@ -1,9 +1,8 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateTaskDto } from '../dto/create-task.dto';
-import { UpdateTaskDto } from '../dto/update-task.dto';
-import { Task, TaskDocument } from '../schemas/task.schema';
+import { TaskDto } from '../models/task.dto';
+import { Task, TaskDocument } from '../models/task.schema';
 
 @Injectable()
 export class TaskService {
@@ -19,8 +18,8 @@ export class TaskService {
     return await this.model.findOne({ title }).exec();
   }
 
-  async create(createTaskDto: CreateTaskDto): Promise<Task> {
-    const { title } = createTaskDto;
+  async create(TaskDto: TaskDto): Promise<Task> {
+    const { title } = TaskDto;
     const createdTask = await this.model.findOne({ title }).exec();
     if (createdTask) {
       throw new BadRequestException({
@@ -28,14 +27,14 @@ export class TaskService {
       });
     }
     return await new this.model({
-      ...createTaskDto,
+      ...TaskDto,
       createdAt: new Date(),
     }).save();
   }
 
-  async update(title: string, updateTodoDto: UpdateTaskDto): Promise<Task> {
+  async update(title: string, TaskDto: TaskDto): Promise<Task> {
     return await this.model
-      .findOneAndUpdate({ title }, updateTodoDto, {
+      .findOneAndUpdate({ title }, TaskDto, {
         new: true,
         useFindAndModify: false,
       })

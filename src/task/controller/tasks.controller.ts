@@ -10,8 +10,7 @@ import {
   ValidationPipe,
   HttpCode,
 } from '@nestjs/common';
-import { CreateTaskDto } from '../dto/create-task.dto';
-import { UpdateTaskDto } from '../dto/update-task.dto';
+import { TaskDto } from '../models/task.dto';
 import { TaskService } from '../service/tasks.service';
 import {
   ApiCreatedResponse,
