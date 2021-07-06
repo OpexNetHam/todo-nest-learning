@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsEnum } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { TaskStatus } from './TaskStatus';
 
@@ -17,5 +17,6 @@ export class TaskDto {
     description: 'Task status. 0 for undone, 1 for done',
     required: false,
   })
+  @IsEnum(TaskStatus)
   status?: TaskStatus;
 }
